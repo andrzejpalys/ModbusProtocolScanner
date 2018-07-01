@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.TextFlow?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="673.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.andrzejpalys.ModbusProtocolScanner.graphic.controller.Controller">
+    <top>
+        <VBox prefHeight="130.0" prefWidth="673.0" BorderPane.alignment="CENTER">
+            <children>
+                <MenuBar style="-fx-background-color: #085f89;">
+                    <menus>
+                        <Menu mnemonicParsing="false">
+                            <items>
+                                <MenuItem fx:id="menuSaveAs" mnemonicParsing="false" onAction="#menuSaveAsAction" text="Save as..." />
+                                <MenuItem fx:id="menuExit" mnemonicParsing="false" onAction="#exitMenuAction" text="Exit" />
+                            </items>
+                            <graphic>
+                                <Label text="File" textFill="WHITE" />
+                            </graphic>
+                        </Menu>
+                        <Menu mnemonicParsing="false">
+                            <items>
+                                <MenuItem fx:id="menuAbout" mnemonicParsing="false" onAction="#menuAboutAction" text="About" />
+                            </items>
+                            <graphic>
+                                <Label text="Help" textFill="WHITE" />
+                            </graphic>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+                <HBox prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <Region prefHeight="200.0" prefWidth="20.0" />
+                        <Label text="Connection settings">
+                            <padding>
+                                <Insets bottom="5.0" />
+                            </padding>
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <padding>
+                        <Insets top="10.0" />
+                    </padding>
+                </HBox>
+                <HBox prefWidth="600.0" spacing="5.0">
+                    <children>
+                        <Label alignment="CENTER" prefHeight="31.0" prefWidth="60.0" text="IP Address" textAlignment="CENTER">
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin></Label>
+                        <TextField fx:id="connectionIpAddressFirstOctet" alignment="CENTER" onKeyTyped="#connectionManagerUpdate" prefHeight="31.0" prefWidth="35.0" />
+                        <Label alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" layoutX="260.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="5.0" text="." textAlignment="CENTER" />
+                        <TextField fx:id="connectionIpAddressSecondOctet" alignment="CENTER" layoutX="80.0" layoutY="10.0" onKeyTyped="#connectionManagerUpdate" prefHeight="31.0" prefWidth="35.0" />
+                        <Label alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" layoutX="109.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="5.0" text="." textAlignment="CENTER" />
+                        <TextField fx:id="connectionIpAddressThirdOctet" alignment="CENTER" layoutX="125.0" layoutY="10.0" onKeyTyped="#connectionManagerUpdate" prefHeight="31.0" prefWidth="35.0" />
+                        <Label alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" layoutX="153.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="5.0" text="." textAlignment="CENTER" />
+                        <TextField fx:id="connectionIpAddressFourthOctet" alignment="CENTER" layoutX="170.0" layoutY="10.0" onKeyTyped="#connectionManagerUpdate" prefHeight="31.0" prefWidth="35.0" />
+                        <Region prefHeight="31.0" prefWidth="35.0" />
+                        <Label alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="30.0" text="Port" textAlignment="CENTER">
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin></Label>
+                        <TextField fx:id="connectionPort" alignment="CENTER" layoutX="80.0" layoutY="10.0" onKeyTyped="#connectionManagerUpdate" prefHeight="31.0" prefWidth="40.0" />
+                        <Region layoutX="162.0" layoutY="10.0" prefHeight="31.0" prefWidth="20.0" />
+                        <Label prefHeight="31.0" text="Period [ms]" />
+                        <TextField fx:id="connectionSchedulePeriod" alignment="CENTER" onKeyTyped="#connectionManagerUpdate" prefHeight="31.0" prefWidth="45.0" text="1000" />
+                        <Region prefHeight="31.0" prefWidth="30.0" />
+                        <Button fx:id="buttonConnect" mnemonicParsing="false" onAction="#buttonConnectAction" prefHeight="31.0" prefWidth="80.0" text="Connect" textAlignment="CENTER">
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin></Button>
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+                    </VBox.margin>
+                </HBox>
+                <Separator prefWidth="200.0">
+                    <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                    </VBox.margin>
+                </Separator>
+                <HBox prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <Region prefHeight="200.0" prefWidth="20.0" />
+                        <Label text="Modbus settings">
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                            <padding>
+                                <Insets bottom="5.0" top="5.0" />
+                            </padding>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox prefWidth="600.0" spacing="5.0">
+                    <children>
+                        <Label alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="45.0" text="Register" textAlignment="CENTER" />
+                        <TextField fx:id="modbusRegister" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#modbusSlaveUpdate" prefHeight="31.0" prefWidth="50.0" />
+                        <Region maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="5.0" />
+                        <Label alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="45.0" text="Device" textAlignment="CENTER" />
+                        <TextField fx:id="modbusDeviceId" alignment="CENTER" onKeyTyped="#modbusSlaveUpdate" prefHeight="31.0" prefWidth="50.0" />
+                        <Region prefHeight="31.0" prefWidth="5.0" />
+                        <Label alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="45.0" text="Length" textAlignment="CENTER" />
+                        <TextField fx:id="modbusLength" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#modbusSlaveUpdate" prefHeight="31.0" prefWidth="50.0" />
+                        <Region maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="5.0" />
+                        <Label alignment="CENTER" contentDisplay="TOP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="50.0" text="Function" textAlignment="CENTER" />
+                        <ComboBox fx:id="modbusFunction" onAction="#modbusSlaveUpdate" prefHeight="31.0" prefWidth="150.0">
+                            <cursor>
+                                <Cursor fx:constant="DEFAULT" />
+                            </cursor></ComboBox>
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="10.0" left="20.0" right="20.0" top="5.0" />
+                    </VBox.margin>
+                </HBox>
+            </children>
+        </VBox>
+    </top>
+    <cursor>
+        <Cursor fx:constant="DEFAULT" />
+    </cursor>
+    <bottom>
+        <VBox BorderPane.alignment="CENTER">
+            <children>
+                <HBox>
+                    <children>
+                        <Region prefHeight="51.0" prefWidth="12.0" />
+                        <Label fx:id="connectionStatusLabel" prefHeight="39.0" prefWidth="91.0" text="Disconnected">
+                            <HBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </HBox.margin></Label>
+                        <Region prefHeight="51.0" prefWidth="288.0" />
+                        <Label prefHeight="51.0" text="Tx : " />
+                        <Label fx:id="outputCounterLabel" prefHeight="51.0" prefWidth="80.0" text="0">
+                            <HBox.margin>
+                                <Insets left="5.0" right="5.0" />
+                            </HBox.margin>
+                        </Label>
+                        <Label prefHeight="51.0" text="Valid Rx : " />
+                        <Label fx:id="inputCounterLabel" prefHeight="51.0" prefWidth="80.0" text="0">
+                            <HBox.margin>
+                                <Insets left="5.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children></HBox>
+            </children>
+        </VBox>
+    </bottom>
+    <center>
+        <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <content>
+                <AnchorPane focusTraversable="true">
+                    <children>
+                        <TextFlow fx:id="textFlow" cache="true" focusTraversable="true" lineSpacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                    </children>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>
